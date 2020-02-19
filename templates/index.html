@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='fr'>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+      <title>Le monde de GrandPyBot</title>
+  </head>
+  <body>
+    <header>
+      <img src="static/img/granpy.png" alt="Grand père robot">
+      <p class="titre">Raconte moi une histoire GrandPyBot ..</p>
+    </header>
+
+    <main>
+      <div class="question">
+        <h2>Que pourrais tu me dire sur ... ?</h2>
+        <form id="questionform">
+          <input type="text" id="question" name="question" placeholder="Search.." size="50" formmethod="POST">
+          <input type="submit" value="Poser la question à GrandPy" formmethod="POST">
+        </form>
+      </div>
+
+      <article class="hidden">
+        <div class="loader"></div>
+        <div id="result"></div>
+        <div id="map"></div>
+      </article>
+    </main>
+    <footer>
+      <p>
+        Emmanuel Nocquet - Parcours Python - Projet 07
+      </p>
+      <a href="https://github.com/tatsumanu/Projet_07">github.com/tatsumanu/Projet_07</a>
+      <p>Powered by Flask</p>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="static/js/grandpy.js"></script>
+  </body>
+</html>
