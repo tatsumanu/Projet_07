@@ -6,7 +6,7 @@
       <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
       <title>Le monde de GrandPyBot</title>
   </head>
-  <body>
+  <body style="background-image: url('static/img/board2.jpg');background-repeat: no-repeat;background-attachment: fixed;background-position: center;">
     <header>
       <img src="static/img/granpy.png" alt="Grand père robot">
       <p class="titre">Raconte moi une histoire GrandPyBot ..</p>
@@ -24,14 +24,17 @@
       <article class="hidden">
         <div class="loader"></div>
         <div id="result"></div>
-        <div id="map"></div>
+        <div id="map">
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5V82kbhZyYoUJdvuO0E7vUVKY_3AzvOA&callback=initMap"
+    async defer></script>
+        </div>
       </article>
     </main>
     <footer>
       <p>
         Emmanuel Nocquet - Parcours Python - Projet 07
-      </p>
       <a href="https://github.com/tatsumanu/Projet_07">github.com/tatsumanu/Projet_07</a>
+      </p>
       <p>Powered by Flask</p>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

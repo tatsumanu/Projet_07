@@ -27,28 +27,43 @@ class Answer:
 class Wiki:
 
     def __init__(self, geocode):
-        self.latitude = geocode[0]["geometry"]["location"]["lat"]
-        self.longitude = geocode[0]["geometry"]["location"]["lng"]
-        self.address = geocode[0]["formatted_address"]
+        try:
+            self.latitude = geocode[0]["geometry"]["location"]["lat"]
+            self.longitude = geocode[0]["geometry"]["location"]["lng"]
+            self.address = geocode[0]["formatted_address"]
+            self.lost = ""
+        except IndexError:
+            self.latitude = 48.8748465
+            self.longitude = 2.3504873
+            self.address = 'De retour chez OpenClassrooms... '
+            self.lost = """ Désolé mais quand je suis perdu, je reviens
+             toujours à mon point de départ! Je ne suis qu'un robot
+              après tout..."""
         self.response = {}
         self.some_bargain = ["Ah oui, oui, oui... ",
-                             """ Bien sur mon petit, voilà ce que
-                              je peux te dire sur cet endroit... """,
+                             "Bien sur mon petit... ",
                              "Hum, voyons, voyons... ",
-                             "Oh, très intéressant oui! "]
+                             "Oh, très intéressant oui! ",
+                             "Rrrrr... Pardon? Qu'y a-t'il mon poussin? "]
         self.other_blabla = [". Mais sais tu que ... ",
-                             ". Juste à côté, il y a aussi ... ",
+                             """. Voilà ce que
+                              je peux te dire ... """,
                              ". Ah je me souviens que ... "]
         wikipedia.set_lang('fr')
 
     def asking(self):
-        self.response["localize"] = wikipedia.geosearch(self.latitude,
-                                                        self.longitude)
-        self.response["answer"] = choice(self.some_bargain) + self.address
-        page = wikipedia.page(title=choice(self.response["localize"]))
-        self.response["environment"] = choice(self.other_blabla) + page.summary
-        self.response = json.dumps(self.response,
-                                   ensure_ascii=False).encode('utf8')
+        self.response["coord"] = {'lat': self.latitude, 'lng': self.longitude}
+        if not self.lost:
+            self.response["localize"] = wikipedia.geosearch(self.latitude,
+                                                            self.longitude)
+            self.response["answer"] = choice(self.some_bargain) + self.address
+            page = wikipedia.page(title=choice(self.response["localize"]))
+            self.response["environment"] = choice(self.other_blabla) + page.summary
+            self.response = json.dumps(self.response,
+                                       ensure_ascii=False).encode('utf8')
+        else:
+            self.response["answer"] = self.address
+            self.response["environment"] = self.lost
         print(self.response)
         return self.response
 
