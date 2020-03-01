@@ -28,8 +28,8 @@ def search():
 
 
 # credits page
-@app.route("/credits", methods=["GET"])
-def credits():
+@app.route("/credit", methods=["GET"])
+def credit():
     return render_template("credits.html")
 
 

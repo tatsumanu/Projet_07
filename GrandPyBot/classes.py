@@ -14,8 +14,11 @@ class Answer:
     def __init__(self, question):
         self.question = question
         self.answer = []
-        with open('stop.json') as f:
-            self.data = json.load(f)
+        try:
+            with open('stop.json') as f:
+                self.data = json.load(f)
+        except FileNotFoundError:
+            self.data = {}
 
     def searching(self):
         total = re.findall(r'[a-zA-Zéèùàêô]*', self.question)
@@ -54,7 +57,7 @@ class Map:
 class Wiki:
 
     """ Usefull stuff is taken in the google map response and then passed
-    to the wikipedia module in order to retrieve the informations needed
+    to the wikipedia API in order to retrieve the informations needed
     for GrandPy to answer. """
     def __init__(self, geocode):
         try:
@@ -75,24 +78,27 @@ class Wiki:
                              "Hum, voyons, c'est situé là je crois... ",
                              "Oh, très intéressant oui! C'est situé... ",
                              "Rrrrr... Pardon? Qu'y a-t'il mon poussin? "]
-        self.other_blabla = [""". Tout près de cet endroit on trouve
-                              également ... """,
+        self.other_blabla = [". Voyons, que puis-je te raconter sur cet \
+            endroit ... ",
                              """. C'est un secteur intéressant!
                               Par exemple... """,
-                             """. Ah je me souviens qu'il y a aussi dans
-                              les environs... """]
+                             ". Ah je me souviens que... "]
         wikipedia.set_lang('fr')
 
     def asking(self):
         self.response["coord"] = {'lat': self.latitude, 'lng': self.longitude}
         if not self.lost:
-            self.response["localize"] = wikipedia.geosearch(self.latitude,
-                                                            self.longitude)
-            self.response["answer"] = choice(self.some_bargain) + self.address
-            page = wikipedia.page(title=choice(self.response["localize"]))
-            self.response["environment"] = choice(self.other_blabla) + page.summary
-            self.response = json.dumps(self.response,
-                                       ensure_ascii=False).encode('utf8')
+            try:
+                self.response["localize"] = wikipedia.geosearch(self.latitude,
+                                                                self.longitude)
+                self.response["answer"] = choice(self.some_bargain) + \
+                    self.address
+                title = choice(self.response["localize"])
+                page = wikipedia.page(title=title)
+                self.response["environment"] = choice(self.other_blabla) + \
+                    page.summary
+            except wikipedia.exceptions.PageError:
+                pass
         else:
             self.response["answer"] = self.address
             self.response["environment"] = self.lost
