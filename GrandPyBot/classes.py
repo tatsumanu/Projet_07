@@ -3,6 +3,7 @@ import json
 import wikipedia
 import requests
 from random import choice
+from config import GOOGLE_MAP_API_KEY
 
 
 class Answer:
@@ -44,7 +45,7 @@ class Map:
         url = "https://maps.googleapis.com/maps/api/geocode/json?"
         parameters = {
             'address': self.data,
-            'key': 'AIzaSyD5V82kbhZyYoUJdvuO0E7vUVKY_3AzvOA',
+            'key': GOOGLE_MAP_API_KEY,
             'language': 'FR',
             'region': 'FR'
         }
@@ -66,6 +67,8 @@ class Wiki:
             self.address = geocode[0]["formatted_address"]
             self.lost = ""
         except IndexError:
+            """ If map API returns no response, default values are provided
+            to the wiki object and then returned by the application """
             self.latitude = 48.8748465
             self.longitude = 2.3504873
             self.address = 'De retour chez OpenClassrooms... '
@@ -97,8 +100,10 @@ class Wiki:
                 page = wikipedia.page(title=title)
                 self.response["environment"] = choice(self.other_blabla) + \
                     page.summary
-            except wikipedia.exceptions.PageError:
-                pass
+            except (wikipedia.exceptions.PageError, IndexError):
+                self.response['environment'] = """. Je suis désolé mon petit,
+                 ma mémoire me fait défaut et je n'ai rien à te dire à ce
+                  sujet..."""
         else:
             self.response["answer"] = self.address
             self.response["environment"] = self.lost

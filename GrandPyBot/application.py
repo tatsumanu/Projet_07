@@ -2,9 +2,11 @@
 
 # making necessary imports
 from flask import Flask, render_template, request
-from classes import Answer, Wiki, Map
+from .classes import Answer, Wiki, Map
 
 app = Flask(__name__)
+
+app.config.from_object('config')
 
 
 # base url
@@ -40,4 +42,4 @@ def not_found(e):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

@@ -26,9 +26,9 @@ function initMap(coord) {
   });
 }
 
-/* When a user submit a request, it is caught by this function.
+/* When the user submit a request, it is caught by this function.
  A loader appears while processing the request and then the function
- prints the result to the web page*/
+ prints the result to the web page */
 $('#questionform').submit (
   function (event) {
     event.preventDefault();
