@@ -1,24 +1,34 @@
 
+#header {
+    height: 3em;
+}
+
+#main {
+    min-height: calc(100vh - (8em));
+}
+
+
 /* Remove the navbar's default margin-bottom and rounded borders */ 
 .navbar {
     border-radius: 0;
 }
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {height: 600px}
 
 /* Set gray background color and 100% height */
 .sidenav {
     padding-top: 20px;
     background-color: #f1f1f1;
-    height: 100%;
+    height: 50vh;
 }
 
 /* Set black background color, white text and some padding */
 footer {
+    height: 5em;
     background-color: #555;
     color: white;
     padding: 15px;
+    margin-top: 20px;
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */
@@ -27,7 +37,7 @@ footer {
     height: auto;
     padding: 15px;
     }
-    .row.content {height:auto;} 
+    .row.content {height:auto;}
 }
 
 /* In the beginning, hide this part of the website */

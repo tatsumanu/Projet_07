@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" id="header">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -23,7 +23,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="/credit">Credits</a></li>
         <li><a href="https://github.com/tatsumanu">My Projects</a></li>
         <li><a href="https://github.com/tatsumanu/Projet_07">Lien Github vers mon projet!</a></li>
@@ -35,7 +35,7 @@
   </div>
 </nav>
   
-<div class="container-fluid text-center">    
+<div class="container-fluid text-center" id="main">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
       <p>Made with:</p>
@@ -64,7 +64,7 @@
           <div class="loader"></div>
           <div id="result"></div>
           <div id="map">
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5V82kbhZyYoUJdvuO0E7vUVKY_3AzvOA&callback=initMap"
+            <script src="https://maps.googleapis.com/maps/api/js?key={{ config['GOOGLE_MAP_API_KEY'] }}&callback=initMap"
       async defer></script>
           </div>
         </div>
