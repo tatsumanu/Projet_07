@@ -37,7 +37,15 @@ footer {
     height: auto;
     padding: 15px;
     }
-    .row.content {height:auto;}
+    .row.content {
+        height:auto;    
+    }
+    #result {
+        width: auto;
+    }
+    #map {
+        width: auto;
+    }
 }
 
 /* In the beginning, hide this part of the website */
@@ -49,7 +57,7 @@ justify-content: space-around;
 /* Defines the style of the wikipedia answer's window */
 #result {
 display: inline-block;
-width: 45%;
+width: 400px;
 height: 400px;
 background-color: ivory;
 border: 2px solid black;
@@ -65,7 +73,7 @@ overflow: scroll;
 /* Defines the style of the google map answer's window */
 #map {
 display: inline-block;
-width: 45%;
+width: 400px;
 height: 400px;
 border: 2px solid black;
 border-radius: 5px;
