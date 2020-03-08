@@ -4,7 +4,7 @@
 }
 
 #main {
-    min-height: calc(100vh - (8em));
+    min-height: calc(100vh - (12em));
 }
 
 
@@ -14,12 +14,15 @@
 }
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+    height: 450px
+}
 
 /* Set gray background color and 100% height */
 .sidenav {
     padding-top: 20px;
     background-color: #f1f1f1;
-    height: 50vh;
+    height: 88vh;
 }
 
 /* Set black background color, white text and some padding */
@@ -66,7 +69,7 @@ box-shadow: 6px 6px 6px black;
 padding: 5px;
 margin-right: 10px;
 margin-top: 10px;
-margin-left: 5px;
+margin-left: 10px;
 overflow: scroll;
 }
 
@@ -80,7 +83,7 @@ border-radius: 5px;
 box-shadow: 6px 6px 6px black;
 margin-left: 10px;
 margin-top: 10px;
-margin-right: 5px;
+margin-right: 10px;
 }
 
 /* The loader style and animation */
