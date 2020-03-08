@@ -1,14 +1,10 @@
 
-#header {
-    height: 3em;
-}
-
 #main {
     min-height: calc(100vh - (12em));
 }
 
 
-/* Remove the navbar's default margin-bottom and rounded borders */ 
+/* Remove the navbar's default rounded borders */ 
 .navbar {
     border-radius: 0;
 }
@@ -44,10 +40,10 @@ footer {
         height:auto;    
     }
     #result {
-        width: auto;
+        max-width: fit-content;
     }
     #map {
-        width: auto;
+        max-width: -webkit-fill-available;
     }
 }
 
