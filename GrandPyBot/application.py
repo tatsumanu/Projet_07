@@ -21,7 +21,6 @@ def search():
     question = request.form['question']
     answer = Answer(question)
     reponse = answer.searching()
-    print(reponse)
     gmap = Map(reponse)
     geocode = gmap.geo_search()
     wiki = Wiki(geocode)

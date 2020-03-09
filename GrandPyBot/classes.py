@@ -51,7 +51,6 @@ class Map:
         }
         ask = requests.get(url, params=parameters)
         self.geo_resp = ask.json()["results"]
-        print(self.geo_resp)
         return self.geo_resp
 
 
@@ -107,5 +106,4 @@ class Wiki:
         else:
             self.response["answer"] = self.address
             self.response["environment"] = self.lost
-        print(self.response)
         return self.response

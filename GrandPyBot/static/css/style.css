@@ -47,6 +47,23 @@ footer {
     }
 }
 
+/* On medium screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 1290px) {
+    .sidenav {
+    height: auto;
+    padding: 15px;
+    }
+    .row.content {
+        height:auto;    
+    }
+    #result {
+        max-width: fit-content;
+    }
+    #map {
+        max-width: -webkit-fill-available;
+    }
+}
+
 /* In the beginning, hide this part of the website */
 #hidden {
 display: none;
