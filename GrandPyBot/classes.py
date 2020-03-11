@@ -22,6 +22,11 @@ class Answer:
             self.data = {}
 
     def searching(self):
+        """ Take the user input and remove element that end like a verb,
+        remove also words that are in the list loaded in self.data.
+        :return: a string with relevant argument for GrandPyBot
+        :rtype: string
+        """
         total = re.findall(r'[a-zA-Zéèùàêô]*', self.question)
         verb = re.findall(r'[a-zA-Z]*er', self.question)
         for elt in total:
@@ -42,6 +47,12 @@ class Map:
         self.geo_resp = {}
 
     def geo_search(self):
+        """ A simple request to the Google Maps Geocoding API. Can
+        identify an address with words related to.
+        :return: Geocoding data i.e latitude and longitude and other
+        usefull data for our research
+        :rtype: Json
+        """
         url = "https://maps.googleapis.com/maps/api/geocode/json?"
         parameters = {
             'address': self.data,
@@ -60,6 +71,14 @@ class Wiki:
     to the wikipedia API in order to retrieve the informations needed
     for GrandPy to answer. """
     def __init__(self, geocode):
+        """ Create a wiki instance that is a dictionary where keys are
+        informations from the Google Maps API request.
+        :param arg1: A json object coming from geosearch method from map
+        class.
+        :type arg1: Json
+        :return: A dictionnary containing elements for GrandPy response
+        :rtype: dict
+        """
         try:
             self.latitude = geocode[0]["geometry"]["location"]["lat"]
             self.longitude = geocode[0]["geometry"]["location"]["lng"]
@@ -88,6 +107,13 @@ class Wiki:
         wikipedia.set_lang('fr')
 
     def asking(self):
+        """ With the coordinates given by Google Maps Geocoding, try a
+        wikipedia geosearch to retrieve noticeable site and address near
+        this point. Add some sort of random by choosing a response from
+         this result and the GrandPyBot talks.
+        :return: Global response that will be sent to the web page
+        :rtype: dict
+        """
         self.response["coord"] = {'lat': self.latitude, 'lng': self.longitude}
         if not self.lost:
             try:
